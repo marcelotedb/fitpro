@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <meta name="mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <meta name="apple-mobile-web-app-title" content="FitPro"/>
+  <meta name="theme-color" content="#0d0d0f"/>
+  <meta name="description" content="Treinos personalizados com base científica"/>
+  <title>FitPro — Treinos Personalizados</title>
+  <link rel="manifest" href="manifest.json"/>
+  <link rel="apple-touch-icon" href="assets/icon-192.png"/>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+<!-- ═══════════════════════════ SPLASH ═══════════════════════════ -->
+<div id="screen-splash" class="screen active">
+  <div class="splash-bg"></div>
+  <div class="splash-content">
+    <div class="logo-wrap">
+      <div class="logo-icon">⚡</div>
+      <h1 class="logo-text">FitPro</h1>
+      <p class="logo-sub">Treinos Personalizados com Base Científica</p>
+    </div>
+    <button class="btn-primary btn-xl pulse" onclick="App.goTo('parq')">Começar Agora</button>
+    <button class="btn-ghost" onclick="App.loadExisting()">Já tenho conta</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ PAR-Q ═══════════════════════════ -->
+<div id="screen-parq" class="screen">
+  <div class="screen-header">
+    <button class="btn-back" onclick="App.goTo('splash')">←</button>
+    <h2>Questionário PAR-Q</h2>
+    <span class="step-badge">1/4</span>
+  </div>
+  <div class="screen-body">
+    <div class="parq-intro">
+      <div class="info-box warning">
+        <span class="info-icon">⚠️</span>
+        <p>Este questionário avalia sua aptidão para exercícios físicos. Responda com honestidade.</p>
+      </div>
+    </div>
+    <div class="parq-questions" id="parq-questions">
+      <!-- Preenchido pelo JS -->
+    </div>
+    <button class="btn-primary btn-full mt-20" onclick="App.submitParq()">Continuar</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ CADASTRO ═══════════════════════════ -->
+<div id="screen-register" class="screen">
+  <div class="screen-header">
+    <button class="btn-back" onclick="App.goTo('parq')">←</button>
+    <h2>Seu Perfil</h2>
+    <span class="step-badge">2/4</span>
+  </div>
+  <div class="screen-body">
+    <div class="form-section">
+      <h3 class="section-title">Dados Pessoais</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nome</label>
+          <input type="text" id="r-name" placeholder="Seu nome" class="form-input"/>
+        </div>
+      </div>
+      <div class="form-row two-col">
+        <div class="form-group">
+          <label>Idade</label>
+          <input type="number" id="r-age" placeholder="25" min="12" max="90" class="form-input"/>
+        </div>
+        <div class="form-group">
+          <label>Sexo</label>
+          <select id="r-gender" class="form-input">
+            <option value="">Selecione</option>
+            <option value="M">Masculino</option>
+            <option value="F">Feminino</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row two-col">
+        <div class="form-group">
+          <label>Peso (kg)</label>
+          <input type="number" id="r-weight" placeholder="70" min="30" max="250" class="form-input"/>
+        </div>
+        <div class="form-group">
+          <label>Altura (cm)</label>
+          <input type="number" id="r-height" placeholder="175" min="100" max="230" class="form-input"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3 class="section-title">Nível de Condicionamento</h3>
+      <div class="option-cards" id="level-cards">
+        <div class="option-card" data-group="level" data-value="beginner" onclick="App.selectOption(this)">
+          <span class="option-icon">🌱</span>
+          <span class="option-label">Iniciante</span>
+          <span class="option-desc">0–6 meses</span>
+        </div>
+        <div class="option-card" data-group="level" data-value="intermediate" onclick="App.selectOption(this)">
+          <span class="option-icon">💪</span>
+          <span class="option-label">Intermediário</span>
+          <span class="option-desc">6–24 meses</span>
+        </div>
+        <div class="option-card" data-group="level" data-value="advanced" onclick="App.selectOption(this)">
+          <span class="option-icon">🔥</span>
+          <span class="option-label">Avançado</span>
+          <span class="option-desc">2+ anos</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3 class="section-title">Dias disponíveis por semana</h3>
+      <div class="days-grid" id="days-grid">
+        <div class="day-btn" data-day="Seg" onclick="App.toggleDay(this)">Seg</div>
+        <div class="day-btn" data-day="Ter" onclick="App.toggleDay(this)">Ter</div>
+        <div class="day-btn" data-day="Qua" onclick="App.toggleDay(this)">Qua</div>
+        <div class="day-btn" data-day="Qui" onclick="App.toggleDay(this)">Qui</div>
+        <div class="day-btn" data-day="Sex" onclick="App.toggleDay(this)">Sex</div>
+        <div class="day-btn" data-day="Sáb" onclick="App.toggleDay(this)">Sáb</div>
+        <div class="day-btn" data-day="Dom" onclick="App.toggleDay(this)">Dom</div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3 class="section-title">Tempo por sessão</h3>
+      <div class="option-cards">
+        <div class="option-card" data-group="duration" data-value="30" onclick="App.selectOption(this)">
+          <span class="option-icon">⏱️</span>
+          <span class="option-label">30 min</span>
+        </div>
+        <div class="option-card" data-group="duration" data-value="45" onclick="App.selectOption(this)">
+          <span class="option-icon">⏱️</span>
+          <span class="option-label">45 min</span>
+        </div>
+        <div class="option-card" data-group="duration" data-value="60" onclick="App.selectOption(this)">
+          <span class="option-icon">⏱️</span>
+          <span class="option-label">60 min</span>
+        </div>
+        <div class="option-card" data-group="duration" data-value="90" onclick="App.selectOption(this)">
+          <span class="option-icon">⏱️</span>
+          <span class="option-label">90 min</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3 class="section-title">Equipamentos disponíveis</h3>
+      <div class="check-grid" id="equipment-grid">
+        <label class="check-card">
+          <input type="checkbox" value="gym"/> 🏋️ Academia completa
+        </label>
+        <label class="check-card">
+          <input type="checkbox" value="dumbbells"/> 🏃 Halteres/Home gym
+        </label>
+        <label class="check-card">
+          <input type="checkbox" value="bodyweight"/> 🤸 Peso corporal
+        </label>
+        <label class="check-card">
+          <input type="checkbox" value="outdoor"/> 🌳 Área ao ar livre
+        </label>
+        <label class="check-card">
+          <input type="checkbox" value="resistance_bands"/> 🔴 Faixas elásticas
+        </label>
+        <label class="check-card">
+          <input type="checkbox" value="kettlebell"/> 🔔 Kettlebell
+        </label>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3 class="section-title">Histórico de lesões</h3>
+      <textarea id="r-injuries" class="form-input" rows="3" placeholder="Ex: Lesão no joelho direito, dor lombar... (opcional)"></textarea>
+    </div>
+
+    <button class="btn-primary btn-full mt-20" onclick="App.submitRegister()">Continuar</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ OBJETIVO ═══════════════════════════ -->
+<div id="screen-goal" class="screen">
+  <div class="screen-header">
+    <button class="btn-back" onclick="App.goTo('register')">←</button>
+    <h2>Escolha seu Objetivo</h2>
+    <span class="step-badge">3/4</span>
+  </div>
+  <div class="screen-body">
+    <p class="subtitle">Seu plano de treino será 100% personalizado com base no objetivo escolhido.</p>
+    <div class="goal-cards">
+      <div class="goal-card goal-hypertrophy" onclick="App.selectGoal('hypertrophy')">
+        <div class="goal-icon">💪</div>
+        <div class="goal-info">
+          <h3>Hipertrofia Muscular</h3>
+          <p>Ganho de massa muscular com protocolos científicos de força</p>
+          <div class="goal-tags">
+            <span class="tag">3-5 séries</span>
+            <span class="tag">10-20 reps</span>
+            <span class="tag">4-6x/semana</span>
+          </div>
+        </div>
+        <div class="goal-arrow">→</div>
+      </div>
+
+      <div class="goal-card goal-weightloss" onclick="App.selectGoal('weightloss')">
+        <div class="goal-icon">🔥</div>
+        <div class="goal-info">
+          <h3>Perda de Peso</h3>
+          <p>Combinação HIIT + Musculação para máxima queima calórica</p>
+          <div class="goal-tags">
+            <span class="tag">HIIT</span>
+            <span class="tag">EPOC</span>
+            <span class="tag">Cardio</span>
+          </div>
+        </div>
+        <div class="goal-arrow">→</div>
+      </div>
+
+      <div class="goal-card goal-soccer" onclick="App.selectGoal('soccer')">
+        <div class="goal-icon">⚽</div>
+        <div class="goal-info">
+          <h3>Atleta de Futebol</h3>
+          <p>Força, velocidade, agilidade e resistência específica para futebol</p>
+          <div class="goal-tags">
+            <span class="tag">Agilidade</span>
+            <span class="tag">Potência</span>
+            <span class="tag">Pliometria</span>
+          </div>
+        </div>
+        <div class="goal-arrow">→</div>
+      </div>
+
+      <div class="goal-card goal-sports" onclick="App.selectGoal('sports')">
+        <div class="goal-icon">🏃</div>
+        <div class="goal-info">
+          <h3>Esportes Variados</h3>
+          <p>Treinamento funcional para performance esportiva geral</p>
+          <div class="goal-tags">
+            <span class="tag">Funcional</span>
+            <span class="tag">Circuito</span>
+            <span class="tag">Multi-esporte</span>
+          </div>
+        </div>
+        <div class="goal-arrow">→</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ GERAÇÃO ═══════════════════════════ -->
+<div id="screen-generating" class="screen">
+  <div class="generating-center">
+    <div class="spinner-ring"></div>
+    <h2 id="gen-title">Criando seu plano...</h2>
+    <p id="gen-sub">Analisando seu perfil e objetivos</p>
+    <div class="gen-steps" id="gen-steps"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ DASHBOARD ═══════════════════════════ -->
+<div id="screen-dashboard" class="screen">
+  <div class="dashboard-header" id="dash-header">
+    <div class="dash-user">
+      <div class="user-avatar" id="dash-avatar">⚡</div>
+      <div>
+        <h2 id="dash-name">Atleta</h2>
+        <p id="dash-goal-label">Hipertrofia Muscular</p>
+      </div>
+    </div>
+    <button class="btn-icon" onclick="App.goTo('profile')">⚙️</button>
+  </div>
+
+  <!-- Stats bar -->
+  <div class="stats-bar" id="stats-bar">
+    <div class="stat-item">
+      <span class="stat-value" id="stat-streak">0</span>
+      <span class="stat-label">Streak 🔥</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value" id="stat-total">0</span>
+      <span class="stat-label">Treinos</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value" id="stat-cal">0</span>
+      <span class="stat-label">kcal est.</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value" id="stat-vol">0</span>
+      <span class="stat-label">Volume (kg)</span>
+    </div>
+  </div>
+
+  <!-- IMC Card -->
+  <div class="imc-card" id="imc-card">
+    <div class="imc-info">
+      <span class="imc-label">IMC</span>
+      <span class="imc-value" id="imc-value">--</span>
+      <span class="imc-class" id="imc-class">--</span>
+    </div>
+    <div class="imc-bar-wrap">
+      <div class="imc-bar">
+        <div class="imc-indicator" id="imc-indicator"></div>
+      </div>
+      <div class="imc-scale">
+        <span>Baixo</span><span>Normal</span><span>Sobrepeso</span><span>Obeso</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Weekly plan -->
+  <div class="section-card">
+    <div class="section-card-header">
+      <h3>Plano Semanal</h3>
+      <button class="btn-sm" onclick="App.regeneratePlan()">↺ Regenerar</button>
+    </div>
+    <div class="weekly-plan" id="weekly-plan"><!-- JS --></div>
+  </div>
+
+  <!-- Today workout -->
+  <div class="section-card today-card" id="today-card">
+    <div class="section-card-header">
+      <h3 id="today-label">Treino de Hoje</h3>
+      <span class="badge-type" id="today-type">A</span>
+    </div>
+    <div class="today-exercises" id="today-exercises"><!-- JS --></div>
+    <button class="btn-primary btn-full mt-16" id="start-workout-btn" onclick="App.startWorkout()">
+      ▶ Iniciar Treino
+    </button>
+  </div>
+
+  <!-- Quick actions -->
+  <div class="quick-actions">
+    <button class="quick-btn" onclick="App.goTo('library')">
+      <span class="quick-icon">📚</span>
+      <span>Biblioteca</span>
+    </button>
+    <button class="quick-btn" onclick="App.goTo('nutrition')">
+      <span class="quick-icon">🥗</span>
+      <span>Nutrição</span>
+    </button>
+    <button class="quick-btn" onclick="App.goTo('diary')">
+      <span class="quick-icon">📓</span>
+      <span>Diário</span>
+    </button>
+    <button class="quick-btn" onclick="App.goTo('achievements')">
+      <span class="quick-icon">🏆</span>
+      <span>Conquistas</span>
+    </button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ TREINO ATIVO ═══════════════════════════ -->
+<div id="screen-workout" class="screen">
+  <div class="workout-header" id="workout-header">
+    <button class="btn-back-light" onclick="App.exitWorkout()">✕</button>
+    <div class="workout-header-info">
+      <h2 id="wk-title">Treino A — Peito/Tríceps</h2>
+      <span id="wk-progress">Exercício 1 de 6</span>
+    </div>
+    <div class="wk-timer-display" id="wk-global-timer">00:00</div>
+  </div>
+
+  <!-- Progress bar -->
+  <div class="wk-progress-bar">
+    <div class="wk-progress-fill" id="wk-progress-fill"></div>
+  </div>
+
+  <!-- Exercise card -->
+  <div class="exercise-active-card" id="exercise-active-card">
+    <div class="ex-number" id="ex-number">1</div>
+    <div class="ex-video-placeholder" id="ex-video">
+      <div class="video-icon" id="ex-emoji">💪</div>
+      <div class="video-btn-wrap">
+        <button class="video-btn" onclick="App.openVideo()">▶ Ver Demonstração</button>
+      </div>
+    </div>
+    <h2 class="ex-name" id="ex-name">Supino Reto</h2>
+    <p class="ex-muscle" id="ex-muscle">Peito — Primário</p>
+    <div class="ex-specs">
+      <div class="spec-box">
+        <span class="spec-val" id="ex-sets">4</span>
+        <span class="spec-label">Séries</span>
+      </div>
+      <div class="spec-box">
+        <span class="spec-val" id="ex-reps">12</span>
+        <span class="spec-label">Reps</span>
+      </div>
+      <div class="spec-box">
+        <span class="spec-val" id="ex-rest">90s</span>
+        <span class="spec-label">Descanso</span>
+      </div>
+      <div class="spec-box">
+        <span class="spec-val" id="ex-load">--</span>
+        <span class="spec-label">Carga (kg)</span>
+      </div>
+    </div>
+
+    <!-- Sets tracker -->
+    <div class="sets-tracker" id="sets-tracker"><!-- JS --></div>
+
+    <!-- Tips -->
+    <div class="ex-tips" id="ex-tips">
+      <h4>📋 Execução Correta</h4>
+      <p id="ex-tip-text">Mantenha as omoplatas retraídas, barra desce até tocar levemente o peito, expire na subida.</p>
+    </div>
+    <div class="ex-alert" id="ex-alert" style="display:none">
+      <span>⚠️</span> <span id="ex-alert-text"></span>
+    </div>
+  </div>
+
+  <!-- Timer -->
+  <div class="timer-section" id="timer-section">
+    <div class="timer-display" id="timer-display">00:00</div>
+    <div class="timer-label" id="timer-label">Descanso</div>
+    <div class="timer-controls">
+      <button class="timer-btn" onclick="App.Timer.subtract(15)">-15s</button>
+      <button class="timer-btn timer-main" id="timer-main-btn" onclick="App.Timer.toggle()">▶ Iniciar</button>
+      <button class="timer-btn" onclick="App.Timer.add(15)">+15s</button>
+    </div>
+    <div class="timer-modes">
+      <button class="tmode-btn active" onclick="App.Timer.setMode('rest')">Descanso</button>
+      <button class="tmode-btn" onclick="App.Timer.setMode('tabata')">Tabata</button>
+      <button class="tmode-btn" onclick="App.Timer.setMode('emom')">EMOM</button>
+      <button class="tmode-btn" onclick="App.Timer.setMode('hiit')">HIIT</button>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <div class="wk-nav">
+    <button class="btn-ghost" onclick="App.prevExercise()">← Anterior</button>
+    <button class="btn-primary" onclick="App.nextExercise()">Próximo →</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ FIM DO TREINO ═══════════════════════════ -->
+<div id="screen-workout-done" class="screen">
+  <div class="done-content">
+    <div class="done-trophy">🏆</div>
+    <h2>Treino Concluído!</h2>
+    <p id="done-subtitle">Excelente performance!</p>
+    <div class="done-stats">
+      <div class="done-stat">
+        <span class="done-val" id="done-time">45:20</span>
+        <span class="done-label">Duração</span>
+      </div>
+      <div class="done-stat">
+        <span class="done-val" id="done-exercises">6</span>
+        <span class="done-label">Exercícios</span>
+      </div>
+      <div class="done-stat">
+        <span class="done-val" id="done-cal">420</span>
+        <span class="done-label">kcal est.</span>
+      </div>
+      <div class="done-stat">
+        <span class="done-val" id="done-vol">1250</span>
+        <span class="done-label">Volume (kg)</span>
+      </div>
+    </div>
+
+    <div class="feedback-section">
+      <h3>Como você se sentiu?</h3>
+      <div class="rpe-scale">
+        <button class="rpe-btn" data-rpe="1" onclick="App.setRpe(1)">😴<br>1</button>
+        <button class="rpe-btn" data-rpe="3" onclick="App.setRpe(3)">😊<br>3</button>
+        <button class="rpe-btn" data-rpe="5" onclick="App.setRpe(5)">😤<br>5</button>
+        <button class="rpe-btn" data-rpe="7" onclick="App.setRpe(7)">😰<br>7</button>
+        <button class="rpe-btn" data-rpe="9" onclick="App.setRpe(9)">🥵<br>9</button>
+        <button class="rpe-btn" data-rpe="10" onclick="App.setRpe(10)">💀<br>10</button>
+      </div>
+      <p class="rpe-label" id="rpe-label">Escala RPE (1–10)</p>
+    </div>
+
+    <div class="done-badges" id="done-badges"></div>
+
+    <button class="btn-primary btn-full" onclick="App.finishWorkout()">Salvar e Voltar</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ BIBLIOTECA ═══════════════════════════ -->
+<div id="screen-library" class="screen">
+  <div class="screen-header">
+    <button class="btn-back" onclick="App.goTo('dashboard')">←</button>
+    <h2>Biblioteca de Exercícios</h2>
+  </div>
+  <div class="screen-body">
+    <div class="library-filters">
+      <input type="text" id="lib-search" class="form-input" placeholder="🔍 Buscar exercício..." oninput="App.filterLibrary()"/>
+      <div class="filter-tabs" id="lib-filter-tabs">
+        <button class="ftab active" data-filter="all" onclick="App.setLibFilter('all', this)">Todos</button>
+        <button class="ftab" data-filter="chest" onclick="App.setLibFilter('chest', this)">Peito</button>
+        <button class="ftab" data-filter="back" onclick="App.setLibFilter('back', this)">Costas</button>
+        <button class="ftab" data-filter="legs" onclick="App.setLibFilter('legs', this)">Pernas</button>
+        <button class="ftab" data-filter="shoulders" onclick="App.setLibFilter('shoulders', this)">Ombros</button>
+        <button class="ftab" data-filter="arms" onclick="App.setLibFilter('arms', this)">Braços</button>
+        <button class="ftab" data-filter="core" onclick="App.setLibFilter('core', this)">Core</button>
+        <button class="ftab" data-filter="cardio" onclick="App.setLibFilter('cardio', this)">Cardio</button>
+        <button class="ftab" data-filter="functional" onclick="App.setLibFilter('functional', this)">Funcional</button>
+      </div>
+    </div>
+    <div class="exercise-list" id="library-list"><!-- JS --></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ MODAL EXERCÍCIO ═══════════════════════════ -->
+<div id="modal-exercise" class="modal-overlay" onclick="App.closeModal()">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="App.closeModal()">✕</button>
+    <div class="modal-video-placeholder" id="modal-video">
+      <div class="modal-emoji" id="modal-emoji">💪</div>
+    </div>
+    <div class="modal-body">
+      <h2 id="modal-name">Supino Reto</h2>
+      <div class="modal-tags">
+        <span class="tag" id="modal-muscle">Peito</span>
+        <span class="tag" id="modal-level">Intermediário</span>
+        <span class="tag" id="modal-equip">Barra</span>
+      </div>
+      <div class="modal-section">
+        <h4>Execução</h4>
+        <p id="modal-execution"></p>
+      </div>
+      <div class="modal-section">
+        <h4>Parâmetros</h4>
+        <div class="modal-params" id="modal-params"></div>
+      </div>
+      <div class="modal-section">
+        <h4>⚠️ Atenção</h4>
+        <p id="modal-safety"></p>
+      </div>
+      <div class="modal-section">
+        <h4>Variações</h4>
+        <p id="modal-variations"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ NUTRIÇÃO ═══════════════════════════ -->
+<div id="screen-nutrition" class="screen">
+  <div class="screen-header">
+    <button class="btn-back" onclick="App.goTo('dashboard')">←</button>
+    <h2>Nutrição</h2>
+  </div>
+  <div class="screen-body">
+    <div class="nutrition-hero" id="nutrition-hero">
+      <div class="tdee-display">
+        <span class="tdee-label">TDEE — Gasto Calórico Total</span>
+        <span class="tdee-value" id="tdee-value">0</span>
+        <span class="tdee-unit">kcal/dia</span>
+      </div>
+      <div class="nutrition-target" id="nutrition-target">
+        <span class="target-label">Meta calórica</span>
+        <span class="target-value" id="target-value">0</span>
+        <span class="target-suffix">kcal/dia</span>
+      </div>
+    </div>
+
+    <div class="macros-card">
+      <h3>Distribuição de Macros</h3>
+      <div class="macros-grid" id="macros-grid"><!-- JS --></div>
+    </div>
+
+    <div class="section-card">
+      <h3>Calculadora de TDEE</h3>
+      <div class="form-group">
+        <label>Nível de atividade</label>
+        <select id="activity-level" class="form-input" onchange="App.recalcTdee()">
+          <option value="1.2">Sedentário (sem exercício)</option>
+          <option value="1.375">Levemente ativo (1-3x/semana)</option>
+          <option value="1.55" selected>Moderadamente ativo (3-5x/semana)</option>
+          <option value="1.725">Muito ativo (6-7x/semana)</option>
+          <option value="1.9">Extremamente ativo (atleta)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <h3>Guia de Alimentação por Objetivo</h3>
+      <div class="nutrition-tips" id="nutrition-tips"><!-- JS --></div>
+    </div>
+
+    <div class="section-card">
+      <h3>Recuperação e Sono</h3>
+      <div class="recovery-tips">
+        <div class="tip-item">
+          <span class="tip-icon">😴</span>
+          <div>
+            <strong>Sono 7–9 horas</strong>
+            <p>Fundamental para síntese proteica e recuperação muscular. GH (hormônio do crescimento) é liberado principalmente no sono profundo.</p>
+          </div>
+        </div>
+        <div class="tip-item">
+          <span class="tip-icon">💧</span>
+          <div>
+            <strong>Hidratação</strong>
+            <p>35–40 ml/kg de peso corporal. Adicione 500ml para cada hora de treino intenso.</p>
+          </div>
+        </div>
+        <div class="tip-item">
+          <span class="tip-icon">🧘</span>
+          <div>
+            <strong>Foam Rolling / Alongamento</strong>
+            <p>10–15 minutos pós-treino reduz DOMS e melhora mobilidade a longo prazo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ DIÁRIO ═══════════════════════════ -->
+<div id="screen-diary" class="screen">
+  <div class="screen-header">
+    <button class="btn-back" onclick="App.goTo('dashboard')">←</button>
+    <h2>Diário de Treinos</h2>
+  </div>
+  <div class="screen-body">
+    <div class="diary-summary">
+      <div class="diary-chart" id="diary-chart"><!-- JS --></div>
+    </div>
+    <div class="diary-list" id="diary-list">
+      <p class="empty-state">Nenhum treino registrado ainda. Comece seu primeiro treino!</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ CONQUISTAS ═══════════════════════════ -->
+<div id="screen-achievements" class="screen">
+  <div class="screen-header">
+    <button class="btn-back" onclick="App.goTo('dashboard')">←</button>
+    <h2>Conquistas</h2>
+  </div>
+  <div class="screen-body">
+    <div class="achievements-header">
+      <div class="xp-display">
+        <span class="xp-value" id="xp-total">0</span>
+        <span class="xp-label">XP Total</span>
+      </div>
+      <div class="level-display">
+        <span class="level-badge" id="user-level-badge">🌱</span>
+        <span id="user-level-name">Iniciante</span>
+      </div>
+    </div>
+    <div class="achievements-grid" id="achievements-grid"><!-- JS --></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ PERFIL ═══════════════════════════ -->
+<div id="screen-profile" class="screen">
+  <div class="screen-header">
+    <button class="btn-back" onclick="App.goTo('dashboard')">←</button>
+    <h2>Meu Perfil</h2>
+  </div>
+  <div class="screen-body">
+    <div class="profile-hero" id="profile-hero">
+      <div class="profile-avatar-big" id="profile-avatar">⚡</div>
+      <h2 id="profile-name">Atleta</h2>
+      <p id="profile-goal-tag">Hipertrofia</p>
+    </div>
+    <div class="profile-stats-grid" id="profile-stats"><!-- JS --></div>
+    <div class="section-card">
+      <h3>Atualizar Peso</h3>
+      <div class="form-row two-col">
+        <div class="form-group">
+          <label>Peso atual (kg)</label>
+          <input type="number" id="new-weight" class="form-input" placeholder="70"/>
+        </div>
+        <div class="form-group" style="display:flex;align-items:flex-end;">
+          <button class="btn-primary btn-full" onclick="App.updateWeight()">Salvar</button>
+        </div>
+      </div>
+    </div>
+    <div class="section-card">
+      <h3>Opções</h3>
+      <button class="profile-opt-btn" onclick="App.goTo('goal')">🎯 Mudar objetivo</button>
+      <button class="profile-opt-btn danger" onclick="App.resetApp()">🗑️ Resetar aplicativo</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ BOTTOM NAV ═══════════════════════════ -->
+<nav class="bottom-nav" id="bottom-nav" style="display:none">
+  <button class="nav-btn active" data-screen="dashboard" onclick="App.navTo('dashboard', this)">
+    <span class="nav-icon">🏠</span>
+    <span class="nav-label">Início</span>
+  </button>
+  <button class="nav-btn" data-screen="library" onclick="App.navTo('library', this)">
+    <span class="nav-icon">📚</span>
+    <span class="nav-label">Exercícios</span>
+  </button>
+  <button class="nav-btn" data-screen="nutrition" onclick="App.navTo('nutrition', this)">
+    <span class="nav-icon">🥗</span>
+    <span class="nav-label">Nutrição</span>
+  </button>
+  <button class="nav-btn" data-screen="diary" onclick="App.navTo('diary', this)">
+    <span class="nav-icon">📓</span>
+    <span class="nav-label">Diário</span>
+  </button>
+  <button class="nav-btn" data-screen="profile" onclick="App.navTo('profile', this)">
+    <span class="nav-icon">👤</span>
+    <span class="nav-label">Perfil</span>
+  </button>
+</nav>
+
+<!-- ═══════════════════════════ TOAST ═══════════════════════════ -->
+<div id="toast" class="toast"></div>
+
+<!-- Scripts -->
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js').catch(() => {});
+    });
+  }
+</script>
+</body>
+</html>

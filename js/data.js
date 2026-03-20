@@ -386,6 +386,182 @@ const DB = {
 
     /* ─────────── FUNCIONAL / FUTEBOL ─────────── */
     {
+      id: 'sprint_10m', name: 'Sprint 10m (Aceleração)', emoji: '💨',
+      muscle: 'Membros Inferiores', muscleGroup: 'functional', secondary: 'Glúteos, Core',
+      equipment: ['outdoor', 'gym'], level: 'beginner',
+      sets: '6-10', reps: '10m cada', rest: '60-90s',
+      execution: 'Posição inicial em pé ou em posição baixa (3 apoios). No sinal, exploda com a perna traseira empurrando o chão. Braços em alta frequência, tronco levemente inclinado para frente nos primeiros 5m, depois ereta.',
+      tips: 'A aceleração é vencida nos primeiros 5m. Frequência de passada > comprimento.',
+      safety: 'Aquecimento completo obrigatório. Não sprint a fundo sem preparação prévia.',
+      variations: 'Sprint com reação (sinal sonoro), Sprint de costas, Sprint com mudança de direção.',
+      calories: 14, goals: ['soccer', 'sports'], tags: ['velocidade', 'explosivo', 'aceleração']
+    },
+    {
+      id: 'sprint_30m', name: 'Sprint 30m (Velocidade Máxima)', emoji: '🏃',
+      muscle: 'Membros Inferiores', muscleGroup: 'functional', secondary: 'Glúteos, Core, Panturrilhas',
+      equipment: ['outdoor', 'gym'], level: 'intermediate',
+      sets: '5-8', reps: '30m cada', rest: '2-3 min',
+      execution: 'Arranque dos 30m em velocidade máxima. Primeiros 10m: aceleração progressiva. 10-30m: velocidade absoluta, passos longos, braços em rotação vigorosa. Freie de forma controlada após a linha.',
+      tips: 'Cada sprint deve ser executado a 95-100% do esforço máximo.',
+      safety: 'Somente após 15-20 min de aquecimento. Nunca com frio ou muscular encurtado.',
+      variations: 'Sprint em rampa, Sprint com colete de resistência, Sprint com elástico.',
+      calories: 16, goals: ['soccer', 'sports'], tags: ['velocidade', 'máxima', 'potência']
+    },
+    {
+      id: 'change_of_direction', name: 'Mudança de Direção 5-10-5', emoji: '🔀',
+      muscle: 'Membros Inferiores', muscleGroup: 'functional', secondary: 'Core, Reatividade',
+      equipment: ['outdoor', 'gym'], level: 'intermediate',
+      sets: '6-8', reps: '1 passagem cada', rest: '90s',
+      execution: 'Parta do centro, corra 5m para a direita, toque a linha, corra 10m para a esquerda, toque a linha, corra 5m de volta ao centro. Pivô baixo com joelho dobrado a cada troca de direção.',
+      tips: 'O pivô eficiente é feito com o pé externo, plantando e explodindo na direção oposta.',
+      safety: 'Calçado com boa tração lateral. Solo seco e nivelado.',
+      variations: 'T-Drill, Illinois Agility Test, Spider Drill com bola.',
+      calories: 12, goals: ['soccer', 'sports'], tags: ['agilidade', 'reatividade', 'velocidade']
+    },
+    {
+      id: 'reactive_sprint', name: 'Sprint Reativo com Bola', emoji: '⚽',
+      muscle: 'Membros Inferiores', muscleGroup: 'functional', secondary: 'Coordenação, Tomada de Decisão',
+      equipment: ['outdoor'], level: 'intermediate',
+      sets: '5-8', reps: '15-20m com bola', rest: '90s',
+      execution: 'Parceiro joga a bola para frente. Reaja ao toque e conduza em sprint até a linha de chegada. Varie a direção do passe para treinar reação multidirecional.',
+      tips: 'Simula situações de jogo reais. Olhe a bola, não o chão.',
+      safety: 'Campo sem buracos. Comunicação com parceiro.',
+      variations: 'Sem parceiro (jogar contra a parede), Com oposição passiva, Após finalizaçã.',
+      calories: 13, goals: ['soccer'], tags: ['velocidade', 'bola', 'reativo', 'especifico']
+    },
+    {
+      id: 'nordic_hamstring', name: 'Nordic Hamstring (Flexão Nórdica)', emoji: '🦵',
+      muscle: 'Isquiotibiais', muscleGroup: 'functional', secondary: 'Glúteos, Core',
+      equipment: ['gym', 'outdoor', 'bodyweight'], level: 'intermediate',
+      sets: '3-4', reps: '6-10', rest: '2 min',
+      execution: 'Ajoelhado, parceiro segura os tornozelos. Deixe o corpo cair à frente de forma lenta e controlada (3-4 segundos), usando os isquiotibiais para frear. Use as mãos para auxiliar a volta.',
+      tips: 'ESSENCIAL para prevenção de lesão nos isquiotibiais — principal lesão do futebol. Não pule de nível rápido demais.',
+      safety: 'Exercício exigente. Comece com 3-5 reps por série. Dor posterior imediata = pare.',
+      variations: 'Assistido (com elástico), Natural (sem apoio), Unilateral avançado.',
+      calories: 7, goals: ['soccer'], tags: ['prevenção', 'isquiotibiais', 'excêntrico', 'lesão']
+    },
+    {
+      id: 'single_leg_squat', name: 'Agachamento Unilateral (Pistol)', emoji: '🦿',
+      muscle: 'Quadríceps', muscleGroup: 'functional', secondary: 'Glúteos, Equilíbrio, Tornozelo',
+      equipment: ['bodyweight', 'gym'], level: 'intermediate',
+      sets: '3-4', reps: '6-10 cada perna', rest: '90s',
+      execution: 'Em pé sobre uma perna, braços à frente. Desça lentamente para o agachamento unilateral profundo, perna livre estendida à frente. Mantenha joelho alinhado com o 2º dedo do pé.',
+      tips: 'Desenvolve equilíbrio e força unilateral, evitando assimetrias que causam lesões.',
+      safety: 'Use suporte (TRX, parede) enquanto aprende. Não deixe o joelho colapsar para dentro.',
+      variations: 'Assistido com TRX, Bulgarian Split Squat, Step Down Excêntrico.',
+      calories: 8, goals: ['soccer', 'sports'], tags: ['unilateral', 'equilíbrio', 'força', 'funcional']
+    },
+    {
+      id: 'hip_thrust_soccer', name: 'Hip Thrust com Barra', emoji: '🍑',
+      muscle: 'Glúteos', muscleGroup: 'functional', secondary: 'Isquiotibiais, Core',
+      equipment: ['gym'], level: 'intermediate',
+      sets: '4-5', reps: '10-15', rest: '90s',
+      execution: 'Apoie as escápulas num banco, barra sobre o quadril com proteção. Pés afastados na largura dos ombros. Empurre o quadril para cima até criar linha reta joelho-quadril-ombro. Isometria de 1s no topo.',
+      tips: 'Glúteos fortes = mais potência nos chutes, arranques e saltos no futebol.',
+      safety: 'Proteção adequada na barra. Não hiperextenda a lombar no topo.',
+      variations: 'Com halteres, Unilateral (single-leg), Com elástico acima dos joelhos.',
+      calories: 9, goals: ['soccer', 'hypertrophy'], tags: ['glúteos', 'potência', 'chute', 'força']
+    },
+    {
+      id: 'lateral_bound', name: 'Salto Lateral (Lateral Bound)', emoji: '↔️',
+      muscle: 'Abdutores', muscleGroup: 'functional', secondary: 'Glúteos, Panturrilhas, Core',
+      equipment: ['outdoor', 'gym', 'bodyweight'], level: 'intermediate',
+      sets: '4-5', reps: '10-12 cada lado', rest: '75s',
+      execution: 'Em pé sobre uma perna. Salte lateralmente pousando sobre o pé oposto, absorvendo o impacto com joelho flexionado. Equilibre por 1 segundo antes do próximo salto. Mantenha tronco estável.',
+      tips: 'Simula os deslocamentos laterais explosivos do futebol. Pouso suave = absorção de impacto correta.',
+      safety: 'Espaço adequado. Não deixe o joelho de pouso cair para dentro (valgo).',
+      variations: 'Com elástico, Contínuo (vai-e-volta), Com cones como marcadores.',
+      calories: 11, goals: ['soccer', 'sports'], tags: ['pliometria', 'lateral', 'explosivo', 'funcional']
+    },
+    {
+      id: 'reactive_agility', name: 'Agilidade Reativa com Espelho', emoji: '🪞',
+      muscle: 'Membros Inferiores', muscleGroup: 'functional', secondary: 'Reatividade, Coordenação',
+      equipment: ['outdoor', 'gym'], level: 'intermediate',
+      sets: '5-6', reps: '20-30s cada', rest: '60s',
+      execution: 'Dois atletas frente a frente. Um lidera os movimentos (esquerda, direita, frente, trás, salto). O outro espelha imediatamente. Após 20s, trocar de liderança.',
+      tips: 'Treina reatividade e antecipação — habilidade crucial para marcação e desmarcação no futebol.',
+      safety: 'Espaço mínimo de 3m entre as pessoas. Solo não escorregadio.',
+      variations: 'Com bola (liderança por passes), 1vs1 com cone central, Mirror Drill com cones.',
+      calories: 10, goals: ['soccer', 'sports'], tags: ['reativo', 'agilidade', 'antecipação', 'jogo']
+    },
+    {
+      id: 'cruyff_turn_drill', name: 'Drible e Pivô (Cruyff Turn)', emoji: '🔄',
+      muscle: 'Membros Inferiores', muscleGroup: 'functional', secondary: 'Coordenação, Bola',
+      equipment: ['outdoor'], level: 'beginner',
+      sets: '4-6', reps: '10 cada lado', rest: '60s',
+      execution: 'Conduza a bola em velocidade moderada. Finja o passe/chute com a perna dominante. Em vez de contato, passe a bola para trás com o interior do pé e gire 180° com o corpo. Conduza na nova direção.',
+      tips: 'Um dos dribles mais usados no futebol. Combina técnica com condicionamento físico.',
+      safety: 'Campo nivelado. Bola calibrada corretamente.',
+      variations: 'Stepover + Drible, Elastico, Roulette (Zidane turn).',
+      calories: 8, goals: ['soccer'], tags: ['técnico', 'bola', 'coordenação', 'drible']
+    },
+    {
+      id: 'interval_run_soccer', name: 'Corrida Intervalada (Yo-Yo Test)', emoji: '🏃‍♂️',
+      muscle: 'Sistema Cardiovascular', muscleGroup: 'functional', secondary: 'Membros Inferiores, Resistência',
+      equipment: ['outdoor', 'gym'], level: 'intermediate',
+      sets: '1', reps: '20 min total', rest: 'Contínuo com variação',
+      execution: 'Distância de 20m marcada. Corra entre as linhas no ritmo do sinal sonoro (ou app Yo-Yo). Descanse 10s entre cada repetição. Vá aumentando a velocidade a cada nível até atingir o limite.',
+      tips: 'Padrão ouro para medir VO2 max em jogadores de futebol. Teste e treino ao mesmo tempo.',
+      safety: 'Hidratação antes e durante. Pare se sentir tontura ou dor no peito.',
+      variations: 'Yo-Yo Nível 1 (Resistência), Nível 2 (Intensidade), Cooper Test (12 min contínuos).',
+      calories: 15, goals: ['soccer', 'sports'], tags: ['resistência', 'VO2max', 'cardio', 'aeróbico']
+    },
+    {
+      id: 'rondo_fitness', name: 'Rondo Físico (Posse de Bola)', emoji: '🔵',
+      muscle: 'Sistema Cardiovascular', muscleGroup: 'functional', secondary: 'Membros Inferiores, Decisão',
+      equipment: ['outdoor'], level: 'beginner',
+      sets: '4-6', reps: '3-5 min cada', rest: '2 min',
+      execution: 'Grupo de 4-6 jogadores em círculo, 2 no meio. Jogadores do lado de fora passam a bola com toque limitado (1 ou 2 toques), os do meio tentam interceptar. Quem perde a bola vai ao meio.',
+      tips: 'Combina tática, técnica e resistência. Favorito do Barcelona e seleções de elite.',
+      safety: 'Círculo adequado ao número de jogadores. Comunicação clara das regras.',
+      variations: 'Rondo 4vs2, 5vs2, 6vs2, com toque único, em espaço reduzido.',
+      calories: 10, goals: ['soccer'], tags: ['posse', 'técnico', 'tático', 'resistência']
+    },
+    {
+      id: 'defensive_positioning', name: 'Treino de Marcação 1vs1', emoji: '🛡️',
+      muscle: 'Membros Inferiores', muscleGroup: 'functional', secondary: 'Core, Reatividade',
+      equipment: ['outdoor'], level: 'beginner',
+      sets: '6-8', reps: '30-45s cada round', rest: '60s',
+      execution: 'Defensor: posição baixa, pés afastados, peso na ponta dos pés. Atacante tenta passar. Defensor acompanha os movimentos sem se comprometer, aguardando o momento certo do corte ou pressão.',
+      tips: 'Não lance o corpo cedo. Leia a bola e o quadril do atacante, não os pés.',
+      safety: 'Contato permitido com regras claras. Espaço definido com cones.',
+      variations: 'Com objetivo (cones/mini-gol), Zona de pressão limitada, Com apoio dos companheiros.',
+      calories: 9, goals: ['soccer'], tags: ['defensivo', 'marcação', 'tático', 'reativo']
+    },
+    {
+      id: 'ankle_stability', name: 'Equilíbrio e Estabilidade de Tornozelo', emoji: '⚖️',
+      muscle: 'Tornozelo', muscleGroup: 'functional', secondary: 'Panturrilhas, Propriocepção',
+      equipment: ['gym', 'bodyweight'], level: 'beginner',
+      sets: '3-4', reps: '30-60s cada lado', rest: '45s',
+      execution: 'Em pé sobre uma perna, olhos fechados (progressão: olhos abertos → fechados → em superfície instável). Mantenha o equilíbrio por 30-60s. Variação: faça pequenos agachamentos unilaterais (10-15cm).',
+      tips: 'Tornozelo instável é a lesão #1 no futebol. Previna com este exercício regularmente.',
+      safety: 'Próximo de uma parede ou barra para apoio de segurança.',
+      variations: 'Em colchonete, Em prancha de equilíbrio (bosu), Com recepção de bola lançada.',
+      calories: 3, goals: ['soccer', 'sports'], tags: ['prevenção', 'propriocepção', 'tornozelo', 'equilíbrio']
+    },
+    {
+      id: 'shooting_power_drill', name: 'Treino de Chute com Força', emoji: '💥',
+      muscle: 'Quadríceps', muscleGroup: 'functional', secondary: 'Glúteos, Isquiotibiais, Core',
+      equipment: ['outdoor'], level: 'beginner',
+      sets: '3-5', reps: '10-15 chutes cada pé', rest: '90s',
+      execution: 'Bola parada a 10-15m do gol. Aproximação em 3-4 passos, plante o pé de apoio ao lado da bola, braços abertos para equilíbrio. Chute com o peito do pé (parte externa do tornozelo em riste), seguindo com o movimento completo da perna.',
+      tips: 'Potência vem do quadril e da aceleração do joelho, não apenas do pé. Contato no centro-baixo da bola.',
+      safety: 'Aquecimento dos flexores do quadril e isquiotibiais antes de chutar com força.',
+      variations: 'Chute em movimento, Chute de primeira, Chute com a perna não-dominante.',
+      calories: 10, goals: ['soccer'], tags: ['chute', 'técnico', 'potência', 'finalização']
+    },
+    {
+      id: 'heading_jump', name: 'Salto e Cabeceio', emoji: '🤸',
+      muscle: 'Membros Inferiores', muscleGroup: 'functional', secondary: 'Core, Pescoço, Coordenação',
+      equipment: ['outdoor', 'gym'], level: 'intermediate',
+      sets: '4-5', reps: '10-12', rest: '60s',
+      execution: 'Parceiro ou máquina lança a bola em altura acima da cabeça. Salte com dois pés (ou um), estendendo completamente o corpo. No ponto mais alto, curve e estenda o tronco para transferir força para a cabeça no contato com a bola.',
+      tips: 'A força do cabeceio vem do tronco e pescoço, não do pescoço isolado. Olhe sempre para a bola.',
+      safety: 'Não pratique cabeceios em excesso. Fortaleça pescoço progressivamente.',
+      variations: 'Cabeceio lateral, Cabeceio defensivo (para longe), Cabeceio com disputa.',
+      calories: 9, goals: ['soccer'], tags: ['cabeceio', 'salto', 'aéreo', 'técnico']
+    },
+    {
       id: 'agility_ladder', name: 'Escada de Agilidade', emoji: '🪜',
       muscle: 'Membros Inferiores', muscleGroup: 'functional', secondary: 'Core, Coordenação',
       equipment: ['outdoor', 'gym'], level: 'beginner',
@@ -572,35 +748,37 @@ const DB = {
       splits: {
         beginner: {
           type: 'Futebol Base',
-          days: ['Seg','Qua','Sex'],
+          days: ['Seg','Ter','Qua','Qui','Sex'],
           sessions: [
-            { label: 'Força + Potência', type: 'FORÇA', exercises: ['squat','lunge','jump_squat','pushup','plank','calf_raise'] },
-            { label: 'Resistência + Cardio', type: 'RESIST.', exercises: ['sprint','high_knees','lateral_shuffle','skip_rope','mountain_climber','crunch'] },
-            { label: 'Agilidade + Core', type: 'AGIL.', exercises: ['agility_ladder','cone_drill','lateral_shuffle','plank','russian_twist','crunch'] },
+            { label: 'Força + Potência Base', type: 'FORÇA', exercises: ['squat','lunge','hip_thrust_soccer','jump_squat','pushup','ankle_stability'] },
+            { label: 'Velocidade + Aceleração', type: 'VEL.', exercises: ['sprint_10m','change_of_direction','agility_ladder','lateral_shuffle','high_knees','cruyff_turn_drill'] },
+            { label: 'Resistência Aeróbica', type: 'RESIST.', exercises: ['interval_run_soccer','skip_rope','high_knees','mountain_climber','lateral_shuffle','crunch'] },
+            { label: 'Técnico + Bola', type: 'TÉC.', exercises: ['cruyff_turn_drill','shooting_power_drill','rondo_fitness','reactive_sprint','defensive_positioning','ankle_stability'] },
+            { label: 'Core + Prevenção', type: 'PREV.', exercises: ['nordic_hamstring','plank','russian_twist','ankle_stability','calf_raise','step_up'] },
           ]
         },
         intermediate: {
           type: 'Periodização Futebol',
           days: ['Seg','Ter','Qua','Qui','Sex','Sáb'],
           sessions: [
-            { label: 'Força Funcional', type: 'FORÇA', exercises: ['squat','romanian_dl','lunge','pushup','pullup','plank'] },
-            { label: 'Velocidade + Agilidade', type: 'VEL.', exercises: ['sprint','agility_ladder','cone_drill','lateral_shuffle','jump_squat','high_knees'] },
-            { label: 'Potência + Pliometria', type: 'POTÊNCIA', exercises: ['box_jump','jump_squat','clap_pushup','medicine_ball_throw','calf_raise','ab_wheel'] },
-            { label: 'Resistência Aeróbica', type: 'RESIST.', exercises: ['sprint','skip_rope','high_knees','mountain_climber','lateral_shuffle','crunch'] },
-            { label: 'Core + Estabilidade', type: 'CORE', exercises: ['plank','russian_twist','ab_wheel','crunch','mountain_climber','step_up'] },
-            { label: 'Regenerativo / Técnico', type: 'RECUP.', exercises: ['lateral_shuffle','agility_ladder','step_up','calf_raise','crunch','plank'] },
+            { label: 'Força Funcional', type: 'FORÇA', exercises: ['squat','romanian_dl','hip_thrust_soccer','nordic_hamstring','single_leg_squat','plank'] },
+            { label: 'Velocidade + SAQ', type: 'SAQ', exercises: ['sprint_10m','sprint_30m','change_of_direction','agility_ladder','cone_drill','reactive_agility'] },
+            { label: 'Potência + Pliometria', type: 'POTÊNCIA', exercises: ['box_jump','lateral_bound','jump_squat','clap_pushup','medicine_ball_throw','heading_jump'] },
+            { label: 'Resistência Anaeróbica', type: 'ANAER.', exercises: ['interval_run_soccer','rondo_fitness','sprint_30m','high_knees','burpee','skip_rope'] },
+            { label: 'Técnico + Tático', type: 'TÉC.', exercises: ['reactive_sprint','cruyff_turn_drill','shooting_power_drill','defensive_positioning','rondo_fitness','heading_jump'] },
+            { label: 'Core + Recuperação', type: 'RECUP.', exercises: ['nordic_hamstring','ankle_stability','plank','russian_twist','ab_wheel','calf_raise'] },
           ]
         },
         advanced: {
-          type: 'Alta Performance',
+          type: 'Alta Performance Futebol',
           days: ['Seg','Ter','Qua','Qui','Sex','Sáb'],
           sessions: [
-            { label: 'Força Máxima', type: 'FORÇA', exercises: ['squat','romanian_dl','pullup','bent_row','overhead_press','ab_wheel'] },
-            { label: 'Sprint + SAQ', type: 'SAQ', exercises: ['sprint','agility_ladder','cone_drill','lateral_shuffle','high_knees','jump_squat'] },
-            { label: 'Potência Explosiva', type: 'POTÊNCIA', exercises: ['box_jump','jump_squat','clap_pushup','kettlebell_swing','medicine_ball_throw','sprint'] },
-            { label: 'Resistência Anaeróbica', type: 'ANAER.', exercises: ['burpee','sprint','high_knees','mountain_climber','lateral_shuffle','skip_rope'] },
-            { label: 'Core + Prevenção', type: 'CORE', exercises: ['plank','russian_twist','ab_wheel','face_pull','step_up','calf_raise'] },
-            { label: 'Regenerativo', type: 'RECUP.', exercises: ['lateral_shuffle','agility_ladder','step_up','calf_raise','crunch','plank'] },
+            { label: 'Força Máxima + Potência', type: 'FORÇA', exercises: ['squat','romanian_dl','hip_thrust_soccer','single_leg_squat','nordic_hamstring','kettlebell_swing'] },
+            { label: 'Sprint + SAQ Avançado', type: 'SAQ', exercises: ['sprint_30m','change_of_direction','reactive_agility','agility_ladder','cone_drill','lateral_bound'] },
+            { label: 'Potência Explosiva', type: 'POTÊNCIA', exercises: ['box_jump','lateral_bound','clap_pushup','medicine_ball_throw','heading_jump','jump_squat'] },
+            { label: 'Resistência de Jogo', type: 'JOGO', exercises: ['interval_run_soccer','rondo_fitness','reactive_sprint','defensive_positioning','change_of_direction','sprint_10m'] },
+            { label: 'Técnico + Finalização', type: 'TÉC.', exercises: ['shooting_power_drill','cruyff_turn_drill','heading_jump','reactive_sprint','rondo_fitness','defensive_positioning'] },
+            { label: 'Prevenção + Regenerativo', type: 'PREV.', exercises: ['nordic_hamstring','ankle_stability','single_leg_squat','plank','ab_wheel','calf_raise'] },
           ]
         }
       }
